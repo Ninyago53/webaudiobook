@@ -1,0 +1,6 @@
+Flask
+Flask-SocketIO
+nltk
+openai==0.28
+faster-whisper
+elevenlabs
