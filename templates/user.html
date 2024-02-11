@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Speaker</title>
+    <link rel="stylesheet" href="../static/css/style.css" type="text/css">
+    <script src="../static/js/script.js" defer></script>
+</head>
+
+<body>
+    <div class="loader_speaker">
+        <span class="stroke"></span>
+        <span class="stroke"></span>
+        <span class="stroke"></span>
+        <span class="stroke"></span>
+        <span class="stroke"></span>
+        <span class="stroke"></span>
+    </div>
+    <button id="closeButton">X</button> 
+    <script>
+        window.addEventListener('DOMContentLoaded', (event) => {
+            startRecording(); // Diese Funktion wird sofort aufgerufen, wenn die Seite geladen ist
+        });
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
+    <script>
+        socket.on('change_frontend_user', function(data) {
+            if (data.html === 'user.html') {
+                window.location.href = '/user'; // Stelle sicher, dass dies korrekt ausgeführt wird
+            }
+        });
+
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+            var closeButton = document.getElementById('closeButton');
+
+            closeButton.addEventListener('click', function() {
+                window.location.href = '/cancel'; // Leitet um zur neuen Flask-Route, die den Abbruch behandelt
+            });
+        });
+
+    </script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>loading</title>
+    <link rel="stylesheet" href="../static/css/style.css" type="text/css">
+    <script src="../static/js/script.js" defer></script>
+
+</head>
+
+<body>
+    <div class="loading">
+        <span class="dot" style="--i:3"></span>
+        <span class="dot" style="--i:2"></span>
+        <span class="dot" style="--i:1"></span>
+        <span class="dot" style="--i:0"></span>
+    </div>
+    <button id="closeButton">X</button>
+</body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
+    <script>
+        var socket = io();
+
+        socket.on('change_frontend_narrator', function(data) {
+            if (data.html === 'narrator.html') {
+                window.location.href = '/narrator';
+            }
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+            var closeButton = document.getElementById('closeButton');
+
+            closeButton.addEventListener('click', function() {
+                window.location.href = '/cancel'; // Leitet um zur neuen Flask-Route, die den Abbruch behandelt
+            });
+        });
+
+    </script>
+</html>

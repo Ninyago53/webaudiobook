@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>intro</title>
+    <link rel="stylesheet" href="../static/css/style.css" type="text/css">
+    <script src="../static/js/script.js" defer></script>
+
+</head>
+
+<body>
+    <div class="intro">
+        <span class="dot" style="--i:3"></span>
+        <span class="dot" style="--i:2"></span>
+        <span class="dot" style="--i:1"></span>
+        <span class="dot" style="--i:0"></span>
+    </div>
+    <button id="closeButton">X</button>
+    <script>
+        window.addEventListener('load', function() {
+            var audio = new Audio('../static/audio/intro.mp3');
+            audio.play();
+            audio.onended = function() {
+                window.location.href = '/user';
+            };
+        });
+    </script>
+
+    <script src="../static/js/script.js"></script>  
+</body>
+
+</html>
