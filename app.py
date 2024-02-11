@@ -6,13 +6,13 @@ import re
 import threading
 import queue
 from elevenlabs import generate, set_api_key, play, stream
-
 from flask_socketio import SocketIO
 import nltk
 from nltk.tokenize import word_tokenize
 import sys
 import os 
-nltk.download('punkt')  #
+
+nltk.download('punkt')  
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'geheim!'
@@ -152,12 +152,8 @@ def convert_to_audio(sentence):
     return audio
 
 audio_processing_completed = False
-
 def play_audio_from_queue(audio_queue):
-    global audio_processing_completed
     redirected = False
-    audio_processing_completed = False
-
     while True:
         if cancellation_flag:
             socketio.emit('change_frontend_cancelled')
@@ -174,13 +170,7 @@ def play_audio_from_queue(audio_queue):
         
         play(audio)
         audio_queue.task_done()
-
-    while not audio_queue.empty():
-        audio_queue.get()
-        audio_queue.task_done()
-
-    audio_processing_completed = True  # Setze die Flagge am Ende der Verarbeitung
-
+    redirected = False
 
 
     while not audio_queue.empty():
